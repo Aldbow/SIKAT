@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIKAT - Unggah Berkas</title>
+    <link rel="stylesheet" href="style3.css" />
+  </head>
+  <body>
+    <div class="upload-page-container">
+      <header class="page-header-upload">
+        <a href="/dashboard.html" class="back-button">← Kembali</a>
+        <div class="page-title-group">
+          <h1>Unggah Berkas TPG</h1>
+          <p>Unggah berkas TPG Anda dengan mudah dan aman</p>
+        </div>
+        <button class="icon-button">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 21L12 3M12 3L17 8M12 3L7 8"
+              stroke="#333"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M19 12V17.8C19 18.9201 19 19.4802 18.7735 19.9205C18.5714 20.3129 18.2575 20.6268 17.8651 20.8289C17.4248 21.0554 16.8647 21.0554 15.7446 21.0554H8.25541C7.13526 21.0554 6.5752 21.0554 6.13491 20.8289C5.74246 20.6268 5.42857 20.3129 5.22651 19.9205C5 19.4802 5 18.9201 5 17.8V12"
+              stroke="#333"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </header>
+
+      <div class="main-content-upload">
+        <div class="form-section">
+          <header class="form-header">
+            <span class="icon">&#x1f4c4;</span>
+            <h2>Formulir Upload Berkas</h2>
+          </header>
+          <form>
+            <div class="form-row">
+              <div class="input-group">
+                <label for="bulan">Bulan TPG *</label>
+                <select id="bulan">
+                  <option>Pilih bulan</option>
+                  <option>Januari</option>
+                  <option>Februari</option>
+                  <option>Maret</option>
+                  <option>April</option>
+                  <option>Mei</option>
+                  <option>Juni</option>
+                  <option>Juli</option>
+                  <option>Agustus</option>
+                  <option>September</option>
+                  <option>Oktober</option>
+                  <option>November</option>
+                  <option>Desember</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="tahun">Tahun TPG *</label>
+                <select id="tahun" type="number" min="2000" max="2100">
+                  <option>Pilih tahun</option>
+                  <option>2025</option>
+                  <option>2026</option>
+                  <option>2027</option>
+                  <option>2028</option>
+                  <option>2029</option>
+                  <option>2030</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="jenis">Jenis Berkas *</label>
+              <select id="jenis">
+                <option>Pilih jenis berkas</option>
+                <option value="1">SKMT</option>
+                <option value="2">SKBK</option>
+                <option value="3">SPMJ</option>
+                <option value="4">
+                  Surat Pernyataan Memenuhi Administrasi
+                </option>
+                <option value="5">Daftar Hadir Bulanan</option>
+                <option value="6">Daftar Gaji Bulan</option>
+                <option value="7">Berita Acara</option>
+                <option value="8">KGB</option>
+                <option value="9">
+                  Surat Permohonan Kelayakan Dispensasi Tunjangan
+                </option>
+                <option value="10">
+                  Surat Permohonan Pembayaran Tunjangan Profesi
+                </option>
+                <option value="11">Laporan Bulanan</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="upload">Upload File *</label>
+              <div class="file-upload-box">
+                <span class="upload-icon">&#x21e7;</span>
+                <p class="upload-label">Pilih File</p>
+                <p class="upload-info">PDF, JPG, atau PNG (Maksimal 5MB)</p>
+                <input type="file" id="upload" name="upload" />
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="catatan">Catatan Tambahan (Opsional)</label>
+              <textarea
+                id="catatan"
+                placeholder="Tambahkan catatan jika diperlukan..."
+              ></textarea>
+            </div>
+            <button type="submit" class="upload-submit-button">
+              <span class="icon">&#x21e7;</span> Unggah Berkas
+            </button>
+          </form>
+        </div>
+
+        <div class="info-section">
+          <section class="requirements-card">
+            <h3>Persyaratan Berkas</h3>
+            <ul>
+              <li>
+                <span class="list-number">1</span>
+                <p>Format File</p>
+                <span>PDF, JPG, PNG (Maksimal 5MB)</span>
+              </li>
+              <li>
+                <span class="list-number">2</span>
+                <p>Kualitas Gambar</p>
+                <span>Pastikan berkas dapat dibaca dengan jelas</span>
+              </li>
+              <li>
+                <span class="list-number">3</span>
+                <p>Nama File</p>
+                <span>Gunakan nama yang deskriptif</span>
+              </li>
+            </ul>
+          </section>
+          <section class="process-card">
+            <h3>Alur Proses</h3>
+            <ol>
+              <li>
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                  <p><strong>Upload Berkas</strong></p>
+                  <p>Unggah berkas sesuai periode</p>
+                </div>
+              </li>
+              <li>
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                  <p><strong>Verifikasi Otomatis</strong></p>
+                  <p>Sistem melakukan pengecekan awal</p>
+                </div>
+              </li>
+              <li>
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                  <p><strong>Verifikasi Manual</strong></p>
+                  <p>Staf melakukan verifikasi detail</p>
+                </div>
+              </li>
+              <li>
+                <div class="step-icon">4</div>
+                <div class="step-content">
+                  <p><strong>Notifikasi Hasil</strong></p>
+                  <p>Anda akan menerima pemberitahuan</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+          <section class="help-card">
+            <h3>Butuh Bantuan?</h3>
+            <p>
+              Jika mengalami kesulitan dalam proses upload, silakan hubungi:
+            </p>
+            <p><strong>Email:</strong> help@sikat.kemenag.go.id</p>
+            <p><strong>WhatsApp:</strong> 0812-3456-7890</p>
+            <p><strong>Jam Operasional:</strong> 08:00 - 16:00 WIB</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
