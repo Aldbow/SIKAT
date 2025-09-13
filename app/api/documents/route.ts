@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { executeQuery } from '@/lib/db'
+import { put } from '@vercel/blob'
 
 export async function GET(request: NextRequest) {
   try {
@@ -97,7 +98,7 @@ export async function POST(request: NextRequest) {
 
     // Validate file type and size
     const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png']
-    const maxSize = 5 * 1024 * 1024 // 5MB
+    const maxSize = 50 * 1024 * 1024 // 50MB (Vercel Blob limit)
 
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json(
@@ -108,39 +109,25 @@ export async function POST(request: NextRequest) {
 
     if (file.size > maxSize) {
       return NextResponse.json(
-        { message: 'Ukuran file terlalu besar. Maksimal 5MB' },
+        { message: 'Ukuran file terlalu besar. Maksimal 50MB' },
         { status: 400 }
       )
     }
 
-    // Save file to disk
-    const fileName = `${Date.now()}_${file.name}`
-    const filePath = `/uploads/${fileName}`
-    const fullPath = `./public/uploads/${fileName}`
-    
-    // Create uploads directory if it doesn't exist
-    const fs = require('fs').promises
-    const path = require('path')
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads')
-    
-    try {
-      await fs.access(uploadsDir)
-    } catch {
-      await fs.mkdir(uploadsDir, { recursive: true })
-    }
-    
-    // Save the file
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-    await fs.writeFile(fullPath, buffer)
-    
+    // Upload file to Vercel Blob
+    const blob = await put(file.name, file, {
+      access: 'public',
+      addRandomSuffix: true,
+    })
+
+    // Save file info to database
     const result = await executeQuery(`
       INSERT INTO documents (
         user_id, document_type_id, title, file_name, file_path, 
         file_size, mime_type, month_period, year_period, notes
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `, [
-      userId, documentTypeId, title, fileName, filePath,
+      userId, documentTypeId, title, file.name, blob.url,
       file.size, file.type, monthPeriod, yearPeriod, notes || null
     ])
 
@@ -152,7 +139,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       message: 'Dokumen berhasil diunggah',
-      documentId: (result as any).insertId
+      documentId: (result as any).insertId,
+      url: blob.url
     })
 
   } catch (error) {
